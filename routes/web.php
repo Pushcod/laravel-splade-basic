@@ -36,11 +36,9 @@ Route::middleware(['splade'])->group(function () {
         ]);
     });
 
-    Route::middleware([
-        'auth:sanctum',
-        config('jetstream.auth_session'),
-        'verified',
-    ])->group(function () {
+    Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
         Route::view('/dashboard', 'dashboard')->name('dashboard');
+        // Ресурсный роут для Services
+        Route::resource('services', \App\Http\Controllers\Admin\ServiceController::class);
     });
 });

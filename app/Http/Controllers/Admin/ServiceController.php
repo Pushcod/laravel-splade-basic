@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use Illuminate\Http\Request;
+use ProtoneMedia\Splade\Facades\Splade;
+use ProtoneMedia\Splade\SpladeTable;
 
 class ServiceController extends Controller
 {
@@ -12,7 +15,10 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.services.index',[
+            'services' => SpladeTable::for(Service::class)
+                ->paginate(10)
+        ]);
     }
 
     /**
