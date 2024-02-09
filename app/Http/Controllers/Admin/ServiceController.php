@@ -7,6 +7,7 @@ use App\Http\Requests\ServiceStoreRequest;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use ProtoneMedia\Splade\Facades\Splade;
+use ProtoneMedia\Splade\Facades\Toast;
 use ProtoneMedia\Splade\SpladeTable;
 
 class ServiceController extends Controller
@@ -47,6 +48,7 @@ class ServiceController extends Controller
         $service->isActive = $request->input('isActive');
         $service->image = $request->file('image')->store('public/services');
         $service->save();
+        Toast::title('Услуга добавлена',);
         return redirect()->route('services.index');
     }
 
@@ -69,23 +71,30 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ServiceStoreRequest $request, Service $id)
+    public function update(Request $request, Service $service)
     {
-        $service = new Service();
         $service->title = $request->input('title');
         $service->description = $request->input('description');
         $service->price = $request->input('price');
         $service->isActive = $request->input('isActive');
-        $service->image = $request->file('image')->store('public/services');
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $filename = $image->getClientOriginalName();
+            $image->storeAs('public/services', $filename);
+            $service->image = $filename;
+        }
         $service->save();
+        Toast::title('Услуга обновлена');
         return redirect()->route('services.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Service $service)
     {
-        //
+        $service->delete();
+        Toast::title('Услуга удалена');
+        return redirect()->route('services.index');
     }
 }
