@@ -19,8 +19,10 @@ class ServiceController extends Controller
         return view('admin.services.index',[
             'services' => SpladeTable::for(Service::class)
                 ->withGlobalSearch(columns:['title','description'])
-                ->column('title')
-                ->column('description')
+                ->column('title',label: "Название услуги", sortable:true)
+                ->column('description',label: "Описание услуги")
+                ->column('action',label: "Действие", canBeHidden: false)
+
                 ->paginate(10)
         ]);
     }
@@ -59,17 +61,24 @@ class ServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Service $service)
     {
-        //
+        return view('admin.services.edit', compact('service'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ServiceStoreRequest $request, Service $id)
     {
-        //
+        $service = new Service();
+        $service->title = $request->input('title');
+        $service->description = $request->input('description');
+        $service->price = $request->input('price');
+        $service->isActive = $request->input('isActive');
+        $service->image = $request->file('image')->store('public/services');
+        $service->save();
+        return redirect()->route('services.index');
     }
 
     /**
