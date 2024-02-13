@@ -42,5 +42,7 @@ Route::middleware(['splade'])->group(function () {
         Route::resource('services', \App\Http\Controllers\Admin\ServiceController::class);
 
         Route::resource('casees', \App\Http\Controllers\Admin\CaseController::class);
+
+        Route::resource('categories', \App\Http\Controllers\CategoryController::class);
     });
 });
