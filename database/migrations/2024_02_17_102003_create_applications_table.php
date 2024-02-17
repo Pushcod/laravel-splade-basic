@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('statuses', function (Blueprint $table) {
+        Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-
+            $table->string('title');
+            $table->string('phone');
+            $table->string('email');
+            $table->date('date_call');
+            $table->boolean('room_type');
+            $table->date('time_create');
+            $table->foreignId('status_id');
             $table->timestamps();
         });
     }
@@ -24,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('statuses');
+        Schema::dropIfExists('applications');
     }
 };

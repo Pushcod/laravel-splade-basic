@@ -11,7 +11,7 @@
         </x-slot>
         <div class="my-4 p-4 rounded-md max-w-3xl mx-auto bg-white">
             <x-splade-form action="{{route('applications.store')}}">
-{{--                <x-splade-select label="Категория товара" name="category_id" :options="$categories"/>--}}
+                <x-splade-select label="Статус заявки" name="status_id" :options="$statuses"/>
                 <x-splade-input name="title" label="{{__('ФИО')}}" placeholder="{{__('Есть пробитие')}}"/>
                 <x-splade-input class="mt-5" name="phone" label="{{__('Номер телефона')}}" placeholder="{{__('Пробитие туза')}}"/>
                 <x-splade-input name="email" label="{{__('Электронный адрес')}}"/>
@@ -21,12 +21,12 @@
                     <option value="1">{{__('Частный дом')}}</option>
                 </x-splade-select>
                 <x-splade-input date name="time_create" label="{{__('Дата создания')}}" placeholder="{{__('')}}"/>
-                <x-splade-select name="isStatus" label="{{__('Статус заявки')}}">
-                    <option value="0">{{__('Отклонено')}}</option>
-                    <option value="1">{{__('Выполнено')}}</option>
-                    <option value="2">{{__('Принято на работу')}}</option>
-                    <option value="3">{{__('Ожидание')}}</option>
-                </x-splade-select>
+{{--                <x-splade-select name="isStatus" label="{{__('Статус заявки')}}">--}}
+{{--                    <option value="0">{{__('Отклонено')}}</option>--}}
+{{--                    <option value="1">{{__('Выполнено')}}</option>--}}
+{{--                    <option value="2">{{__('Принято на работу')}}</option>--}}
+{{--                    <option value="3">{{__('Ожидание')}}</option>--}}
+{{--                </x-splade-select>--}}
 
                 <x-splade-submit label="Сохранить" class="mt-3"/>
             </x-splade-form>

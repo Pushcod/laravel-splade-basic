@@ -14,11 +14,13 @@ class StatusController extends Controller
      */
     public function index()
     {
-        return view('admin.statuses',[
+        return view('admin.statuses.index',[
             'statuses' => SpladeTable::for(Status::class)
-                ->withGlobalSearch(columns:['name','description'])
+                ->withGlobalSearch(columns:['name'])
                 ->column('name', label: "Название")
-                ->column('description',label:  "Описание")
+                ->column('action', label: "Действие")
+
+                ->paginate(10)
         ]);
     }
 
@@ -37,7 +39,7 @@ class StatusController extends Controller
     {
         $status = new Status();
         $status->name = $request->input('name');
-        $status->description = $request->input('description');
+
         $status->save();
         Toast::title('Статус добавлен');
         return redirect()->route('statuses.index');
@@ -56,22 +58,27 @@ class StatusController extends Controller
      */
     public function edit(Status $status)
     {
-
+        return view('admin.statuses.edit',compact('status'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Status $status)
     {
-        //
+        $status->name = $request->input('name');
+        $status->save();
+        Toast::title('Статус добавлен');
+        return redirect()->route('statuses.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Status $status)
     {
-        //
+        $status->delete();
+        Toast::title('Заказ удален');
+        return redirect()->route('statuses.index');
     }
 }

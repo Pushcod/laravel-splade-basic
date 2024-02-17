@@ -48,5 +48,7 @@ Route::middleware(['splade'])->group(function () {
         Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
 
         Route::resource('applications', \App\Http\Controllers\Admin\ApplicationController::class);
+
+        Route::resource('statuses', \App\Http\Controllers\StatusController::class);
     });
 });
