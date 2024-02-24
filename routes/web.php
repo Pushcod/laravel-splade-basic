@@ -27,7 +27,7 @@ Route::middleware(['splade'])->group(function () {
     // Registers routes to support async File Uploads with Filepond...
     Route::spladeUploads();
 
-    Route::get('/', function () {
+    Route::get('/admin', function () {
         return view('welcome', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
@@ -43,12 +43,26 @@ Route::middleware(['splade'])->group(function () {
 
         Route::resource('casees', \App\Http\Controllers\Admin\CaseController::class);
 
-        Route::resource('categories', \App\Http\Controllers\CategoryController::class);
+        Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
 
         Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
 
         Route::resource('applications', \App\Http\Controllers\Admin\ApplicationController::class);
 
-        Route::resource('statuses', \App\Http\Controllers\StatusController::class);
+        Route::resource('statuses', \App\Http\Controllers\Admin\StatusController::class);
+
+        Route::resource('reviews', \App\Http\Controllers\Admin\ReviewController::class);
+
+
     });
+    Route::get('/', [\App\Http\Controllers\Client\IndexController::class, 'index'])->name('Client.index');
+
+    Route::get('/about', [\App\Http\Controllers\Client\IndexController::class, 'about'])->name('client.about');
+    Route::get('/coming_soon', [\App\Http\Controllers\Client\IndexController::class, 'coming_soon'])->name('client.coming_soon');
+    Route::get('/contact', [\App\Http\Controllers\Client\IndexController::class, 'contact'])->name('client.contact');
+    Route::get('/page_404', [\App\Http\Controllers\Client\IndexController::class, 'page_404'])->name('client.page_404');
+    Route::get('/user_services/{id}', [\App\Http\Controllers\Client\IndexController::class, 'services'])->name('client.user_services');
+    Route::get('/services_detail', [\App\Http\Controllers\Client\IndexController::class, 'services_detail'])->name('client.services_detail');
+
+
 });
