@@ -40,11 +40,21 @@ class IndexController extends Controller
         $product = Product::where('id', $id)->first();
         return view('client.user_services', compact('products', 'product'));
     }
-    public function services_detail()
+    public function services_detail($id)
     {
-
-        return view('client.services_detail');
+        $products = Product::where('isActive', 1)->get();
+        $product = Product::where('id', $id)->first();
+        return view('client.services_detail', compact('products', 'product'));
     }
 
+    public function fotback()
+    {
 
+        return view('client.fotback');
+    }
+    public function review()
+    {
+
+        return view('client.review');
+    }
 }

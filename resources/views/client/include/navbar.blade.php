@@ -26,6 +26,10 @@
                     <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                         <li><a class="dropdown-item" href="services_detail">Our Services</a></li>
 
+                        <li><a class="dropdown-item" href="fotback">fotback</a></li>
+
+                        <li><a class="dropdown-item" href="review">review</a></li>
+
                         <li><a class="dropdown-item" href="coming_soon">Coming Soon</a></li>
 
                         <li><a class="dropdown-item" href="page_404">Page 404</a></li>

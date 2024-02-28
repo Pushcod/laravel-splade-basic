@@ -350,8 +350,8 @@
                     <h4 class="partners-section-title bg-white shadow-lg">Trusted by companies</h4>
                 </div>
                 @forelse($partners as $partner)
-                <div class="col-lg-2 col-md-4 col-6">
-                    <img src="{{ Storage::url($partner->image)}}" class="partners-image img-fluid">
+                <div class="col-lg-2 col-md-4 col-6 ">
+                    <img src="{{ Storage::url($partner->image)}}" class="partners-image img-fluid rounded-2xl">
                 </div>
                 @empty
                     {{__('В данный момент партнёры отсутствуют')}}

@@ -77,7 +77,14 @@ class ReviewController extends Controller
         $review->text = $request->input('text');
         $review->rating = $request->input('rating');
         $review->isActive = $request->input('isActive');
-        $review->image = $request->file('image')->store('public/reviews');
+        if ($request->hasFile('image')){
+            $image = $request->file('image');
+            $filename = $image->getClientOriginalName();
+            $image->storeAs('public/reviews',$filename);
+            $review->imgae = $filename;
+        }
+
+
 
 
         $review->save();

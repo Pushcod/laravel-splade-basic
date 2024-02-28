@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->date('date_call');
             $table->boolean('room_type');
-            $table->date('time_create');
+            $table->string('time_create');
             $table->foreignId('status_id');
             $table->timestamps();
         });

@@ -17,6 +17,6 @@ class Application extends Model
         'date-call',
         'room-type',
         'status_id',
-        'time-create'
+        'time_create'
     ];
 }

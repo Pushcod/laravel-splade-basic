@@ -58,7 +58,7 @@ class ApplicationController extends Controller
         $application->email = $request->input('email');
         $application->date_call = $request->date('date_call');
         $application->room_type = $request->input('room_type');
-        $application->time_create = $request->date('time_create');
+        $application->time_create = now()->format('d/m/Y');
         $application->save();
         Toast::title('Заказ добавлен');
         return redirect()->route('applications.index');
@@ -67,9 +67,9 @@ class ApplicationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Application $application)
     {
-        //
+        return view('admin.applications.show', compact('application'));
     }
 
     /**
@@ -92,7 +92,7 @@ class ApplicationController extends Controller
         $application->status_id = $request->input('status_id');
         $application->date_call = $request->date('date_call');
         $application->room_type = $request->input('room_type');
-        $application->time_create = $request->date('time_create');
+        $application->time_create = now()->format('d/m/Y');
         $application->save();
         Toast::title('Заказ обновлен');
         return redirect()->route('applications.index');
