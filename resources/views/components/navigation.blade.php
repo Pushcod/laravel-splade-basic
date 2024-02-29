@@ -39,6 +39,12 @@
                         <x-nav-link :href="route('reviews.index')" :active="request()->routeIS('reviews.index')">
                             {{ __('Отзыв') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('settings.index')" :active="request()->routeIS('settings.index')">
+                            {{ __('Настройки сайта') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('socials.index')" :active="request()->routeIS('socials.index')">
+                            {{ __('Социалки') }}
+                        </x-nav-link>
                     </div>
                 </div>
 

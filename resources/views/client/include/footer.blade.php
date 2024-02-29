@@ -1,10 +1,14 @@
+@php
+    $setting = App\Models\Setting::find(1);
+    $socials = \App\Models\Social::where('isActive', 1)->get();
+@endphp
 <footer class="site-footer">
     <div class="container">
         <div class="row">
 
             <div class="col-lg-12 col-12 d-flex align-items-center mb-4 pb-2">
                 <div>
-                    <img src="assets/images/bubbles.png" class="logo img-fluid" alt="">
+                    <img src="{{ Storage::url($setting->logo) }}" class="logo img-fluid" alt="">
                 </div>
 
                 <ul class="footer-menu d-flex flex-wrap ms-5">
@@ -64,14 +68,14 @@
 
                 <p class="text-white d-flex mt-3 mb-2">
                     <i class="bi-geo-alt-fill me-2"></i>
-                    Akershusstranda 20, 0150 Oslo, Norway
+                    {{ $setting->address }}
                 </p>
 
                 <p class="text-white d-flex mb-2">
                     <i class="bi-telephone-fill me-2"></i>
 
-                    <a href="tel: 110-220-9800" class="site-footer-link">
-                        110-220-9800
+                    <a href="{{ $setting->phone_number }}" class="site-footer-link">
+                        {{ $setting->phone_number }}
                     </a>
                 </p>
 
@@ -79,45 +83,34 @@
                     <i class="bi-envelope-fill me-2"></i>
 
                     <a href="mailto:info@company.com" class="site-footer-link">
-                        info@company.com
+                        {{ $setting->email }}
                     </a>
                 </p>
-
                 <ul class="social-icon mt-4">
-                    <li class="social-icon-item">
-                        <a href="#" class="social-icon-link button button--skoll">
-                            <span></span>
-                            <span class="bi-twitter"></span>
-                        </a>
-                    </li>
+                @forelse($socials as $social)
 
-                    <li class="social-icon-item">
-                        <a href="#" class="social-icon-link button button--skoll">
-                            <span></span>
-                            <span class="bi-facebook"></span>
-                        </a>
-                    </li>
+                        <li class="social-icon-item">
+                            <a href="{{ $social->link }}" class="social-icon-link w-[250px] h-[250px]">
+{{--                                <span></span>--}}
+                                <img class="w-full " src="{{Storage::url($social->icon)}}">
+                            </a>
+                        </li>
 
-                    <li class="social-icon-item">
-                        <a href="#" class="social-icon-link button button--skoll">
-                            <span></span>
-                            <span class="bi-instagram"></span>
-                        </a>
-                    </li>
+                @empty
+                    {{__('Социалок нет')}}
+                @endforelse
                 </ul>
+
+
+
             </div>
 
             <div class="col-lg-3 col-md-6 col-6 mt-3 mt-lg-0 mt-md-0">
                 <div class="featured-block">
                     <h5 class="text-white mb-3">Service Hours</h5>
 
-                    <strong class="d-block text-white mb-1">Mon - Fri</strong>
+                    <p class="text-white mb-3">{{ $setting->schedule }}</p>
 
-                    <p class="text-white mb-3">8:00 AM - 5:30 PM</p>
-
-                    <strong class="d-block text-white mb-1">Sat</strong>
-
-                    <p class="text-white mb-0">6:00 AM - 2:30 PM</p>
                 </div>
             </div>
         </div>

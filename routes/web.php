@@ -55,6 +55,10 @@ Route::middleware(['splade'])->group(function () {
 
         Route::resource('fotback', \App\Http\Controllers\FotbackController::class);
 
+        Route::resource('settings', \App\Http\Controllers\Admin\SettingsController::class);
+
+        Route::resource('socials', \App\Http\Controllers\Admin\SocialsController::class);
+
 
     });
     Route::get('/', [\App\Http\Controllers\Client\IndexController::class, 'index'])->name('Client.index');

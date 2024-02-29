@@ -1,18 +1,18 @@
-@seoTitle(__('Настройка сайта'))
+@seoTitle(__('Социалка'))
 
 <x-app-layout>
     <x-slot:header>
         <div class="w-full flex items-center justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Настройка сайта') }}
+                {{ __('Социалка') }}
             </h2>
-            <a href="{{ route('settings.create') }}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">{{ __('Новая работа') }}</a>
+            <a href="{{ route('socials.create') }}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">{{ __('Новая работа') }}</a>
         </div>
         </x-slot>
         <div class="my-4 p-4 bg-white rounded-md max-w-4xl mx-auto">
-            <x-splade-table :for="$settings" >
-                @cell('logo', $settings)
-                <img src="{{ Storage::url($settings->logo) }}" class="h-16" alt="">
+            <x-splade-table :for="$socials" >
+                @cell('icon', $socials)
+                <img src="{{ Storage::url($socials->icon) }}" class="h-16" alt="">
                 @endcell
 {{--                @cell('action', $settings)--}}
 {{--                <div class="flex gap-2">--}}
