@@ -1,3 +1,6 @@
+@php
+    $about = \App\Models\About::find(1);
+@endphp
 @extends('client.layout.layout')
 @section('title') {{ __('Главная страница') }} @endsection
 
@@ -33,14 +36,14 @@
             <div class="row">
 
                 <div class="col-lg-6 col-12">
-                    <img src="assets/images/cleaning-concept-with-man-showing-business-card.jpg" class="featured-image img-fluid">
+                    <img src="{{ Storage::url($about->image) }}" class="featured-image img-fluid">
                 </div>
 
                 <div class="col-lg-6 col-12">
                     <div class="featured-block">
-                        <h2 class="mb-4">Cleaning Service Agency Since 2018</h2>
+                        <h2 class="mb-4">{{ $about->title }}</h2>
 
-                        <p>Tooplate website provides a variety of latest HTML templates or Bootstrap 5 Themes for your <a href="#">business websites</a>.</p>
+                        <p>{{$about->description}}</p>
 
                         <p>Clean Work is a blue color theme HTML CSS template for your company website. You may use this template for any purpose.</p>
 
@@ -73,21 +76,21 @@
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-12 mb-lg-0 mb-md-5">
-                    <img src="assets/images/teams/young-cleaning-man-wearing-casual-clothes.jpg" class="team-image img-fluid">
+                    <img src="{{ Storage::url($about->profile) }}" class="team-image img-fluid">
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-12 d-flex justify-content-lg-center mt-4 mt-lg-0 mt-md-0 mb-5 mb-lg-0">
                     <div class="team-info mx-auto mx-lg-0">
-                        <h4 class="mb-2">Josh</h4>
+                        <h4 class="mb-2">{{$about->name}}</h4>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing tempor incididunt dolore magna</p>
+                        <p>{{ $about->text }}</p>
 
                         <div class="border-top mt-3 pt-3">
                             <p class="d-flex mb-0">
                                 <i class="bi-whatsapp me-2"></i>
 
-                                <a href="tel: 110-220-9800">
-                                    110-220-9800
+                                <a href="tel: {{ $about->number_phone }}">
+                                    {{ $about->number_phone }}
                                 </a>
                             </p>
                         </div>

@@ -31,11 +31,15 @@
     <section class="services-section section-padding">
         <div class="container">
 
-            <div class="row">
-
+            <div class="row ">
+                @forelse($products as $product)
                 <div class="col-lg-6 col-12">
                     <div class="services-thumb section-bg mb-lg-0 max-w-2xl">
+
                         <div class="row">
+
+
+
                             <div class="col-lg-5 col-md-5 col-12">
                                 <div class="services-image-wrap ">
                                     <a href="{{route('client.user_services', $product->id)}}">
@@ -46,7 +50,7 @@
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <p class="text-white mb-0">
                                                     <i class="bi-cash me-2"></i>
-                                                    $820
+                                                    {{$product->price}}
                                                 </p>
 
                                                 <p class="text-white mb-0">
@@ -60,14 +64,14 @@
                             </div>
 
                             <div class="col-lg-7 col-md-7 col-12 d-flex align-items-center">
-                                <div class="services-info mt-4 mt-lg-0 mt-md-0">
+                                <div class="services-info mt-4 mt-lg-0 mt-md-0 gap-3">
                                     <h4 class="services-title mb-1 mb-lg-2">
                                         <a class="services-title-link" href="{{route('client.user_services', $product->id)}}">{{ $product->title }}</a>
                                     </h4>
 
                                     <p>{{ $product->content }}</p>
 
-                                    <div class="d-flex flex-wrap align-items-center">
+                                    <div class="d-flex flex-wrap align-items-center gap-20">
                                         <div class="reviews-icons">
                                             <i class="bi-star-fill"></i>
                                             <i class="bi-star-fill"></i>
@@ -91,12 +95,17 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+
                     </div>
                 </div>
+                @empty
+                    {{ __('Данного продукта нету') }}
+                @endforelse
+            </div>
 
-
-
+        </div>
     </section>
 
 

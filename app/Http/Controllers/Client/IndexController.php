@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use App\Models\Category;
 use App\Models\Partner;
 use App\Models\Product;
@@ -36,15 +37,16 @@ class IndexController extends Controller
     }
     public function services($id)
     {
-        $products = Product::where('isActive', 1)->get();
-        $product = Product::where('id', $id)->first();
-        return view('client.user_services', compact('products', 'product'));
+        $product = Product::where('isActive', 1)->get();
+        $products = Product::where('id', $id)->first();
+        $partners = Partner::where('isActive', 1)->get();
+        return view('client.user_services', compact('products', 'product', 'partners'));
     }
-    public function services_detail($id)
+    public function services_detail()
     {
         $products = Product::where('isActive', 1)->get();
-        $product = Product::where('id', $id)->first();
-        return view('client.services_detail', compact('products', 'product'));
+
+        return view('client.services_detail', compact('products'));
     }
 
     public function fotback()

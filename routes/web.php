@@ -59,6 +59,8 @@ Route::middleware(['splade'])->group(function () {
 
         Route::resource('socials', \App\Http\Controllers\Admin\SocialsController::class);
 
+        Route::resource('abouts',\App\Http\Controllers\Admin\AboutsController::class);
+
 
     });
     Route::get('/', [\App\Http\Controllers\Client\IndexController::class, 'index'])->name('Client.index');
@@ -68,7 +70,7 @@ Route::middleware(['splade'])->group(function () {
     Route::get('/contact', [\App\Http\Controllers\Client\IndexController::class, 'contact'])->name('client.contact');
     Route::get('/page_404', [\App\Http\Controllers\Client\IndexController::class, 'page_404'])->name('client.page_404');
     Route::get('/user_services/{id}', [\App\Http\Controllers\Client\IndexController::class, 'services'])->name('client.user_services');
-    Route::get('/services_detail/{id}', [\App\Http\Controllers\Client\IndexController::class, 'services_detail'])->name('client.services_detail');
+    Route::get('/services_detail', [\App\Http\Controllers\Client\IndexController::class, 'services_detail'])->name('client.services_detail');
     Route::get('/fotback', [\App\Http\Controllers\Client\IndexController::class, 'fotback'])->name('client.fotback');
     Route::post('/store', [\App\Http\Controllers\FotbackController::class, 'store'])->name('client.FotbackStorаe');
     Route::get('/review', [\App\Http\Controllers\Client\IndexController::class, 'review'])->name('client.review');

@@ -14,7 +14,7 @@
                     </div>
 
                     <!-- Navigation Links -->
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex overflow-x-scroll">
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Панель управления') }}
                         </x-nav-link>
@@ -44,6 +44,9 @@
                         </x-nav-link>
                         <x-nav-link :href="route('socials.index')" :active="request()->routeIS('socials.index')">
                             {{ __('Социалки') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('abouts.index')" :active="request()->routeIS('abouts.index')">
+                            {{ __('О нас') }}
                         </x-nav-link>
                     </div>
                 </div>

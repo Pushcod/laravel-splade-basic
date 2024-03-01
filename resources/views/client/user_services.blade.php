@@ -34,8 +34,8 @@
             <div class="row">
 
                 <div class="col-lg-6 col-12">
-                    <div class="services-image-wrap">
-                        <img src="{{Storage::url($product->image)}}" alt="">
+                    <div class="services-image-wrap max-h-[400px]">
+                        <img src="{{Storage::url($products->image)}}" class="services-image img-fluid max-w-[250px]" alt="">
 
 
                         <div class="services-icon-wrap">
@@ -56,7 +56,7 @@
 
                 <div class="col-lg-6 col-12">
                     <div class="services-info px-4 pt-4">
-                        <h2 class="mb-4">{{$product->title}}</h2>
+                        <h2 class="mb-4">{{$products->title}}</h2>
 
                         <p>Please tell your friends about Tooplate's <a href="#">free HTML templates</a>. Thank you for choosing our templates for your work.</p>
 
@@ -245,6 +245,7 @@
 
     <section class="partners-section">
         <div class="container">
+            @forelse($partners as $partner)
             <div class="row justify-content-center align-items-center">
 
                 <div class="col-lg-12 col-12">
@@ -252,26 +253,29 @@
                 </div>
 
                 <div class="col-lg-2 col-md-4 col-6">
-                    <img src="assets/images/partners/glorix.svg" class="partners-image img-fluid">
+                    <img src="{{Storage::url($partner->image)}}" class="partners-image img-fluid">
                 </div>
 
-                <div class="col-lg-2 col-md-4 col-6">
-                    <img src="assets/images/partners/rolf-leasing.svg" class="partners-image img-fluid">
-                </div>
+{{--                <div class="col-lg-2 col-md-4 col-6">--}}
+{{--                    <img src="assets/images/partners/rolf-leasing.svg" class="partners-image img-fluid">--}}
+{{--                </div>--}}
 
-                <div class="col-lg-2 col-md-4 col-6">
-                    <img src="assets/images/partners/woocommerce.svg" class="partners-image img-fluid">
-                </div>
+{{--                <div class="col-lg-2 col-md-4 col-6">--}}
+{{--                    <img src="assets/images/partners/woocommerce.svg" class="partners-image img-fluid">--}}
+{{--                </div>--}}
 
-                <div class="col-lg-2 col-md-4 col-6">
-                    <img src="assets/images/partners/toprak-leasing.svg" class="partners-image img-fluid">
-                </div>
+{{--                <div class="col-lg-2 col-md-4 col-6">--}}
+{{--                    <img src="assets/images/partners/toprak-leasing.svg" class="partners-image img-fluid">--}}
+{{--                </div>--}}
 
-                <div class="col-lg-2 col-md-4 col-6">
-                    <img src="assets/images/partners/unilabs.svg" class="partners-image img-fluid">
-                </div>
+{{--                <div class="col-lg-2 col-md-4 col-6">--}}
+{{--                    <img src="assets/images/partners/unilabs.svg" class="partners-image img-fluid">--}}
+{{--                </div>--}}
 
             </div>
+            @empty
+                {{ __('Партнеров нету дайте денег') }}
+            @endforelse
         </div>
     </section>
 
